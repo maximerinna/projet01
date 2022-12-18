@@ -1,7 +1,6 @@
 - name: Bienvenue v001
   hosts: all
   tasks:
-    - name: Hello Message
+    - name: Message Bienvenue
       debug:
-        msg: "Hello World!"
-
+        msg: "OK Bonjour"

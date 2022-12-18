@@ -1,12 +1,13 @@
 ---
 
 - hosts: all
-  name: "recuperation preuves" 
+  name: "Recuperation variable shell" 
   gather_facts: no
   tasks:
     - name: Powershell valeur 
       win_shell: |
         $valeur3 = 44
+        # Format json 
         $vm = [PSCustomObject]@{
         name = 'server01'
         os = 'Windows'
@@ -16,18 +17,18 @@
         Write-Output $vmJson
       register: result
 
-    - name: Process win_shell output
+    - name: Creation du fact type json
       set_fact:
         vm: "{{ result.stdout | from_json }}"
 
-    - name: Affichage de la valeur services_raw_json
+    - name: Affichage de la valeur depuis le powershell
       debug: 
         msg:
           - "{{ vm.name }}"
           - "{{ vm.os }}"
           - "{{ vm.ipAddress }}"
 
-    - name: Affichage si 44
+    - name: Affichage sur condition
       debug: 
         msg: "Ok valeur attendu 44"
       when: vm.ipAddress | int == 44
