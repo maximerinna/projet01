@@ -1,2 +1,4 @@
 # ansible-tower-samples
-Ansible Tower Playbook Samples
+Ansible depuis awx sur ubuntu 2004
+
+win_verif_shell : Lecture variable powershell sur cible
